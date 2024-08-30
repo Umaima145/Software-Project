@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionStatic.css-5iifl-MuiPaper-root-MuiAppBar-root {
+    background-color: #008000;
+    margin: 0 !important;
+}
+
+a.MuiTypography-root.MuiTypography-h6.MuiTypography-noWrap.css-ec7jfp-MuiTypography-root {
+    /* word-spacing: normal; */
+    letter-spacing: 0.2rem;
+   font-family: "Roboto", sans-serif;
+   font-size: 16px;
+}
+
+.icon-deg{
+    font-size: 30px;
+}
+
+span.MuiTypography-root.MuiTypography-body1.MuiListItemText-primary.css-1edfpdg-MuiTypography-root {
+    font-size: 1.3rem;
+}
+
+.tablediv{
+    background-color: #F5F5F5;
+    padding: 30px 20px;
+    height: 95vh;
+}
