@@ -3,27 +3,21 @@ import { TextField, Button, Typography, RadioGroup, FormControlLabel, Radio, For
 import { db } from '../config/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-const StudentRegistrationForm = ({heading}) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('');
+const AddSubjectForm = ({heading}) => {
+  const [subjectName, setSubjectName] = useState('');
+  const [group, setGroup] = useState('');
   const [classname, setClassName]= useState('')
 
   const handleSubmit = async () => {
     try {
-      await addDoc(collection(db, 'students'), {
-        firstName,
-        lastName,
-        email,
-        gender,
+      await addDoc(collection(db, 'add subjects'), {
+        subjectName,
+        group,
         classname
       });
-      
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setGender('');
+     
+      setSubjectName('');
+      setGroup('');
       setClassName('')
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -38,39 +32,20 @@ const StudentRegistrationForm = ({heading}) => {
       <Typography variant="h4" align="center" gutterBottom sx={{marginBottom:"40px",marginTop:"40px",textDecoration:"underline"}}>
        {heading}
       </Typography>
-      <Typography>First Name</Typography>
+      <Typography>Subject Name</Typography>
       <TextField
-        placeholder="First Name"
+        placeholder="Enter Your Subject Name"
         variant="outlined"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
+        value={subjectName}
+        onChange={(e) => setSubjectName(e.target.value)}
         required
         sx={{width:"90%", marginBottom:"20px"}}
       />
       <br/><br/>
-      <Typography>Last Name</Typography>
-      <TextField
-        placeholder="Last Name"
-        variant="outlined"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        required
-        sx={{width:"90%", marginBottom:"20px"}}
-      />
-      <br/><br/>
-      <Typography>Email</Typography>
-      <TextField
-        placeholder="Email"
-        variant="outlined"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        sx={{width:"90%", marginBottom:"20px"}}
-      />
 
 <Typography>Class</Typography>
       <TextField
-        placeholder="Class"
+        placeholder="Enter Your Class"
         variant="outlined"
         value={classname}
         onChange={(e) => setClassName(e.target.value)}
@@ -79,22 +54,22 @@ const StudentRegistrationForm = ({heading}) => {
       />
       <br/><br/>
       <FormControl component="fieldset" fullWidth>
-        <FormLabel component="legend">Gender</FormLabel>
+        <FormLabel component="legend">Select Group</FormLabel>
         <RadioGroup
           row
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
+          value={group}
+          onChange={(e) => setGroup(e.target.value)}
         >
           <FormControlLabel 
-            value="male" 
+            value="General Science" 
             control={<Radio sx={{ color: "#008000", '&.Mui-checked': { color: "#008000" } }} />} 
-            label="Male" 
+            label="General Science" 
           />
           <br/>
           <FormControlLabel 
-            value="female" 
+            value="Pre-Engineering" 
             control={<Radio sx={{ color: "#008000", '&.Mui-checked': { color: "#008000" } }} />} 
-            label="Female" 
+            label="Pre-Engineering" 
           />
         </RadioGroup>
       </FormControl>
@@ -110,4 +85,5 @@ const StudentRegistrationForm = ({heading}) => {
   );
 };
 
-export default StudentRegistrationForm;
+export default AddSubjectForm;
+

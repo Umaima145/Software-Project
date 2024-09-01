@@ -19,7 +19,7 @@ const TeacherRegistrationForm = ({heading}) => {
         gender,
         classname
       });
-      // Reset form
+     
       setFirstName('');
       setLastName('');
       setEmail('');

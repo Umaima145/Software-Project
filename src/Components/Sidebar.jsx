@@ -3,6 +3,7 @@ import { List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import { FaEnvelope } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import '../App.css'
 
 const Sidebar = () => {
   const [open, setOpen] = useState({});
@@ -41,19 +42,11 @@ const Sidebar = () => {
       ],
     },
     {
-      name: 'Syllabus',
-      route: 'syllabus',
-      options: [
-        { label: 'Syllabus Form', path: 'add' },
-        { label: 'Syllabus List', path: 'list' },
-      ],
-    },
-    {
       name: 'School',
       route: 'school',
       options: [
         { label: 'Students Registration', path: 'registration' },
-        { label: 'Teachers Registration', path: 'registration' },
+        { label: 'Teachers Registration', path: 'Tearegistration' },
 
       ],
     },
@@ -70,7 +63,7 @@ const Sidebar = () => {
       route: 'fees',
       options: [
         { label: 'Fee Structure', path: 'add' },
-        { label: 'Fee Voucher', path: 'list' },
+        { label: 'Fee Submission', path: 'list' },
       ],
     },
     {
@@ -90,7 +83,7 @@ const Sidebar = () => {
         
       ],
     },
-    // Add more items as needed
+   
   ];
 
   return (
@@ -99,7 +92,7 @@ const Sidebar = () => {
       sx={{
         width: '280px',
         backgroundColor: '#f8f8f8',
-        height: '100vh',
+        height: 'auto',
         boxShadow: '0 0 25px rgba(0, 0, 0, 0.3)',
       }}
     >

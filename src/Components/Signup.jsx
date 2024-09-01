@@ -59,20 +59,20 @@ export default function SignUp() {
   const [error, setError] = useState('');
 
   const handleSignup = async () => {
-    setError(''); // Clear previous errors
+    setError(''); 
     try {
-      // Create a new user with email and password
+      
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Store additional user details in Firestore
+     
       await setDoc(doc(db, 'users', user.uid), {
         firstName,
         lastName,
         email,
       });
 
-      // Save user data to localStorage
+      
       const userObj = {
         firstName,
         lastName,
@@ -80,7 +80,7 @@ export default function SignUp() {
       };
       localStorage.setItem("userData", JSON.stringify(userObj));
 
-      // Redirect to the login page
+      
       navigate('/');
     } catch (error) {
       setError("Error during sign-up: " + error.message);
@@ -105,7 +105,10 @@ export default function SignUp() {
               variant="outlined"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              required
+              required 
+              sx={{
+                width:"120%"
+              }}
             />
             <TextField
               id="lastName"
@@ -116,7 +119,11 @@ export default function SignUp() {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
+              sx={{
+                width:"120%"
+              }}
             />
+           
             <TextField
               id="email"
               name="email"
@@ -126,6 +133,9 @@ export default function SignUp() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              sx={{
+                width:"120%"
+              }}
             />
             <TextField
               id="password"
@@ -136,6 +146,9 @@ export default function SignUp() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              sx={{
+                width:"120%"
+              }}
             />
             <Button
               type="button"

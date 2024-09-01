@@ -3,28 +3,34 @@ import { TextField, Button, Typography, RadioGroup, FormControlLabel, Radio, For
 import { db } from '../config/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-const StudentRegistrationForm = ({heading}) => {
+const ClassForm = ({heading}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
-  const [classname, setClassName]= useState('')
+  const [phoneno, setPhoneno]= useState('')
+  const [dob,setDob] = useState('')
+  const [qualification,setQualification] = useState('')
 
   const handleSubmit = async () => {
     try {
-      await addDoc(collection(db, 'students'), {
+      await addDoc(collection(db, 'class admission'), {
         firstName,
         lastName,
         email,
         gender,
-        classname
+        phoneno,
+        dob,
+        qualification
       });
-      
+     
       setFirstName('');
       setLastName('');
       setEmail('');
       setGender('');
-      setClassName('')
+      setPhoneno('')
+      setDob('')
+      setQualification('')
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -68,12 +74,32 @@ const StudentRegistrationForm = ({heading}) => {
         sx={{width:"90%", marginBottom:"20px"}}
       />
 
-<Typography>Class</Typography>
+<Typography>Phone Number</Typography>
       <TextField
-        placeholder="Class"
+        placeholder="Enter Your Phone Number"
         variant="outlined"
-        value={classname}
-        onChange={(e) => setClassName(e.target.value)}
+        value={phoneno}
+        onChange={(e) => setPhoneno(e.target.value)}
+        required
+        sx={{width:"90%",}}
+      />
+          <br/><br/>
+      <Typography>Date Of Birth</Typography>
+      <TextField
+        placeholder="Enter Your Date Of Birth"
+        variant="outlined"
+        value={dob}
+        onChange={(e) => setDob(e.target.value)}
+        required
+        sx={{width:"90%",}}
+      />
+       <br/><br/>
+      <Typography>Qualification</Typography>
+      <TextField
+        placeholder="Enter Qualification"
+        variant="outlined"
+        value={qualification}
+        onChange={(e) => setQualification(e.target.value)}
         required
         sx={{width:"90%",}}
       />
@@ -110,4 +136,5 @@ const StudentRegistrationForm = ({heading}) => {
   );
 };
 
-export default StudentRegistrationForm;
+export default ClassForm;
+

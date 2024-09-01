@@ -2,26 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button } from '@mui/material';
 import { db } from '../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import '../App.css'
 import { useNavigate } from 'react-router-dom';
 
 
-const StudentList = ({text}) => {
-  const [students, setStudents] = useState([]);
+
+const ClassList = ({text}) => {
+  const [classlist, setClasstlist] = useState([]);
   const navigate = useNavigate()
 
   useEffect(() => {
-    const fetchStudents = async () => {
-      const querySnapshot = await getDocs(collection(db, 'students'));
-      const studentsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setStudents(studentsList);
+    const fetchClasses = async () => {
+      const querySnapshot = await getDocs(collection(db, 'class admission'));
+      const classList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setClasstlist(classList);
     };
 
-    fetchStudents();
+    fetchClasses();
   }, []);
   const handleAddSubject = () => {
-    navigate('/dashboard/students/registration'); 
+    navigate('/dashboard/class/add'); 
   };
+
 
 
   return (
@@ -30,7 +31,7 @@ const StudentList = ({text}) => {
     <Typography sx={{marginBottom:"50px",
     marginTop:"50px",
     fontSize:"30px",
-    fontWeight:"Bold",
+
     textAlign:"center",
     textDecoration:"underline"
     }}>
@@ -44,6 +45,7 @@ const StudentList = ({text}) => {
           Add
         </Button>
       </div>
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead >
@@ -52,15 +54,24 @@ const StudentList = ({text}) => {
             <TableCell align="right">First Name</TableCell>
             <TableCell align="right">Last Name</TableCell>
             <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Gender</TableCell>
+            <TableCell align="right">Phone Number</TableCell>
+
+
+
           </TableRow>
         </TableHead>
         <TableBody>
-          {students.map((student) => (
-            <TableRow key={student.id}>
-              <TableCell component="th" scope="row">{student.id}</TableCell>
-              <TableCell align="right">{student.firstName}</TableCell>
-              <TableCell align="right">{student.lastName}</TableCell>
-              <TableCell align="right">{student.email}</TableCell>
+          {classlist.map((classli) => (
+            <TableRow key={classli.id}>
+              <TableCell component="th" scope="row">{classli.id}</TableCell>
+              <TableCell align="right">{classli.firstName}</TableCell>
+              <TableCell align="right">{classli.lastName}</TableCell>
+              <TableCell align="right">{classli.email}</TableCell>
+              <TableCell align="right">{classli.gender}</TableCell>
+              <TableCell align="right">{classli.phoneno}</TableCell>
+
+              
             </TableRow>
           ))}
         </TableBody>
@@ -71,4 +82,4 @@ const StudentList = ({text}) => {
   );
 };
 
-export default StudentList;
+export default ClassList;

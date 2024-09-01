@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button } from '@mui/material';
 import { db } from '../config/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import '../App.css'
+import { useNavigate } from 'react-router-dom';
 
 
 const TeacherList = ({text}) => {
   const [teachers, setTeachers] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchTeachers = async () => {
@@ -17,6 +19,10 @@ const TeacherList = ({text}) => {
 
     fetchTeachers();
   }, []);
+  const handleAddSubject = () => {
+    navigate('/dashboard/teachers/registration'); 
+  };
+
 
   return (
     
@@ -25,9 +31,20 @@ const TeacherList = ({text}) => {
     marginTop:"50px",
     fontSize:"30px",
     fontWeight:"Bold",
-    textAlign:"center"
+    textAlign:"center",
+    textDecoration:"underline"
     }}>
       {text}</Typography>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '50px' }}>
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: "#008000" }}
+          onClick={handleAddSubject} 
+        >
+          Add
+        </Button>
+      </div>
+
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead >

@@ -56,12 +56,11 @@ export default function Login() {
   const [error, setError] = useState('');
 
   const handleLogin = async () => {
-    setError(''); // Clear previous errors
+    setError(''); 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Redirect to dashboard or another page after successful login
       navigate('/dashboard');
     } catch (error) {
       setError("Error during login: " + error.message);
@@ -82,6 +81,8 @@ export default function Login() {
               Login
             </Typography>
             {error && <Typography color="error" sx={{ marginBottom: "20px", textAlign: "center" }}>{error}</Typography>}
+           
+           
             <TextField
               id="email"
               name="email"
